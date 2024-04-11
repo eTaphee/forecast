@@ -1,11 +1,11 @@
-package im.etap.forecast.application.api
+package im.etap.forecast.application.sync
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ApiApplication
+class SyncApplication
 
 fun main(args: Array<String>) {
-    runApplication<ApiApplication>(*args)
+    runApplication<SyncApplication>(*args)
 }
