@@ -1,4 +1,4 @@
 rootProject.name = "forecast"
-include("api-application")
-include("sync-application")
-include("domain")
+include("modules:application:api-application")
+include("modules:application:sync-application")
+include("modules:domain")
