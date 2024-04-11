@@ -1,4 +1,4 @@
-package im.etap.forecast
+package im.etap.forecast.application.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
