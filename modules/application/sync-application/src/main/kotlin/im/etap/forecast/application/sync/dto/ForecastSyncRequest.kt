@@ -12,16 +12,14 @@ import org.locationtech.jts.geom.Point
  * @param lat 위도
  * @param lng 경도
  */
-data class ForecastSyncRequest(val lat: Double, val lng: Double) {
-    fun getPoint(): Point {
-        return MapUtil.convertGpsToGrid(lat, lng).toPoint()
-    }
+data class ForecastSyncRequest(val lat: Double, val lng: Double)
 
-    companion object {
-        private fun MapGrid.toPoint(): Point {
-            val geometryFactory = GeometryFactory()
-            val coordinate = Coordinate(this.x, this.y)
-            return geometryFactory.createPoint(coordinate)
-        }
-    }
+fun ForecastSyncRequest.getPoint(): Point {
+    return MapUtil.convertGpsToGrid(lat, lng).toPoint()
+}
+
+fun MapGrid.toPoint(): Point {
+    val geometryFactory = GeometryFactory()
+    val coordinate = Coordinate(this.x, this.y)
+    return geometryFactory.createPoint(coordinate)
 }

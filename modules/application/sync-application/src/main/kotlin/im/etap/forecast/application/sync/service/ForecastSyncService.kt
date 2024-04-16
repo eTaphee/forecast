@@ -2,6 +2,7 @@ package im.etap.forecast.application.sync.service
 
 import im.etap.forecast.application.sync.dto.ForecastSyncRequest
 import im.etap.forecast.application.sync.dto.ForecastSyncResponse
+import im.etap.forecast.application.sync.dto.getPoint
 import im.etap.forecast.application.sync.event.ForecastSyncEvent
 import im.etap.forecast.core.time.TimeUtil
 import im.etap.forecast.core.time.TimeUtil.Companion.generateTimeIntervals
