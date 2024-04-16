@@ -36,8 +36,8 @@ class MapUtil {
             if (theta < -Math.PI) theta += 2.0 * Math.PI
             theta *= sn
             return MapGrid(
-                floor(ra * sin(theta) + XO + 0.5).toInt(),
-                floor(ro - ra * cos(theta) + YO + 0.5).toInt()
+                floor(ra * sin(theta) + XO + 0.5),
+                floor(ro - ra * cos(theta) + YO + 0.5)
             )
         }
     }
