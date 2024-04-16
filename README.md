@@ -6,9 +6,13 @@ Spring 6 부터 지원하는 HTTP Interface 를 사용하여 외부 API 를 호�
 
 역직렬화는 nested 응답을 필요한 부분만들 추출하여 사용할 수 있도록 deserialize 구현
 
+연관 관계
+====================
 
 Reference
 -
 https://junuuu.tistory.com/627
 
 https://github.com/Junuu/spring-study
+
+https://unluckyjung.github.io/jpa/2023/04/20/JPA-OneToMany-one-way-relation-issue/
