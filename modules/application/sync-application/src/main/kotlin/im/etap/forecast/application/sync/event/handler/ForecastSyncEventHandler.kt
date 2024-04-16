@@ -1,5 +1,7 @@
 package im.etap.forecast.application.sync.event.handler
 
+import im.etap.forecast.application.core.exception.ErrorCode.FORECAST_SYNC_NOT_FOUND
+import im.etap.forecast.application.core.exception.ForecastException
 import im.etap.forecast.application.sync.event.ForecastSyncEvent
 import im.etap.forecast.domain.entity.ForecastSync
 import im.etap.forecast.domain.repository.ForecastSyncRepository
@@ -40,12 +42,10 @@ class ForecastSyncEventHandler(
     )
     fun handle(event: ForecastSyncEvent) {
         val forecastSync = forecastSyncRepository.findById(event.id)
-            .orElseThrow {
-                throw IllegalArgumentException("ForecastSync not found: $event")
-            }
+            .orElseThrow { throw ForecastException(FORECAST_SYNC_NOT_FOUND) }
 
         try {
-           getForecastInfos(event)
+            getForecastInfos(event)
                 .map { it.toEntity(forecastSync) }
                 .run { forecastSync.addForecastInfos(this) }
         } catch (e: Exception) {
