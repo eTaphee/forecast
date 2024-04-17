@@ -16,7 +16,8 @@ import org.locationtech.jts.geom.Point
  * 확장함수 및 전역변수..
  */
 
-internal val forecastTimeIntervals = TimeUtil.generateTimeIntervals("0210", 3)
+// 단기예보는 오전 2시를 기준으로 3시간 간격으로 제공
+internal val forecastTimeIntervals = TimeUtil.generateTimeIntervals("0200", 3)
 
 internal fun MapGrid.toPoint(): Point {
     val geometryFactory = GeometryFactory()

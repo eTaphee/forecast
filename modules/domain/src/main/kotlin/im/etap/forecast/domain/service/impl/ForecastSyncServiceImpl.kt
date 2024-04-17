@@ -13,6 +13,7 @@ import im.etap.forecast.domain.toPoint
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 
 @Service
 internal class ForecastSyncServiceImpl(
@@ -22,7 +23,10 @@ internal class ForecastSyncServiceImpl(
 
     @Transactional
     override fun saveVillageForecastSyncRequest(request: ForecastSyncRequest): ForecastSyncResponse {
-        val baseDateTime = TimeUtil.getReferenceDateTime(forecastTimeIntervals)
+        val baseDateTime = TimeUtil.getReferenceDateTime(
+            forecastTimeIntervals,
+            LocalDateTime.now().minusMinutes(10) // 정각에 생성, 10분 후 갱신
+        )
         val point = request.toPoint()
 
         forecastSyncRepository.findByBaseDateTimeAndLocation(baseDateTime, point)

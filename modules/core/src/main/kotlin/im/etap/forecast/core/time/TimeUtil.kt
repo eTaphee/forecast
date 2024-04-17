@@ -16,6 +16,7 @@ class TimeUtil {
          */
         fun generateTimeIntervals(startTime: String, interval: Long): List<LocalTime> {
             if (interval <= 0) throw IllegalArgumentException("interval must be greater than 0")
+            if (interval > 24) throw IllegalArgumentException("interval must be less than 24")
 
             val list = ArrayList<LocalTime>()
             var prev = LocalTime.MIDNIGHT

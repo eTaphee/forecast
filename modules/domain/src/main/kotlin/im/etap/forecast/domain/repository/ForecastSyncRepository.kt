@@ -16,4 +16,13 @@ internal interface ForecastSyncRepository : JpaRepository<ForecastSync, Long> {
         baseDateTime: LocalDateTime,
         location: Point
     ): Optional<ForecastSync>
+
+    /**
+     * 정상적으로 동기화 완료된 ForecastSync 조회
+     */
+    @Query("SELECT f FROM ForecastSync f WHERE f.baseDateTime = :baseDateTime AND f.location = :location AND f.isFailed = false AND f.finishedAt IS NOT NULL")
+    fun findAvailableForecastSync(
+        baseDateTime: LocalDateTime,
+        location: Point
+    ): Optional<ForecastSync>
 }

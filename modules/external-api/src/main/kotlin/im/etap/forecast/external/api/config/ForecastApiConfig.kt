@@ -18,7 +18,7 @@ class ForecastApiConfig(
 ) {
     @Bean
     fun forecastApi(): ForecastApi {
-        // TODO: restTemplate 재시도 전략
+        // TODO: restTemplate timeout, retry, backoff
         return HttpServiceProxyFactory.builderFor(
             RestTemplateAdapter.create(RestTemplate().apply {
                 messageConverters.add(MappingJackson2HttpMessageConverter())

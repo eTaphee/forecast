@@ -9,6 +9,7 @@ import im.etap.forecast.domain.service.ForecastQueryService
 import im.etap.forecast.domain.toForecastInfoResponse
 import im.etap.forecast.domain.toPoint
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 @Service
 internal class ForecastQueryServiceImpl(
@@ -19,11 +20,13 @@ internal class ForecastQueryServiceImpl(
         lat: Double,
         lng: Double
     ): List<ForecastInfoResponse> {
-        val baseDateTime = TimeUtil.getReferenceDateTime(forecastTimeIntervals)
+        val baseDateTime = TimeUtil.getReferenceDateTime(
+            forecastTimeIntervals,
+            LocalDateTime.now().minusMinutes(10) // 정각에 생성, 10분 후 갱신
+        )
         val point = MapUtil.convertGpsToGrid(lat, lng).toPoint()
 
-        // TODO, finished, canceled 확인
-        forecastSyncRepository.findByBaseDateTimeAndLocation(baseDateTime, point)
+        forecastSyncRepository.findAvailableForecastSync(baseDateTime, point)
             .let {
                 return if (it.isPresent) {
                     it.get().forecastInfos.map { info -> info.toForecastInfoResponse() }

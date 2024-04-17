@@ -40,5 +40,8 @@ class TimeUtilTest {
         val ldt3 = LocalDateTime.parse("2024-04-14T23:51:00")
         val result3 = TimeUtil.getReferenceDateTime(times, ldt3)
         assertEquals("2024-04-14T23:00", result3.toString())
+        val ldt4 = LocalDateTime.parse("2024-04-14T02:10:00")
+        val result4 = TimeUtil.getReferenceDateTime(times, ldt4.minusMinutes(10))
+        assertEquals("2024-04-13T23:00", result4.toString())
     }
 }
