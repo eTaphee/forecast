@@ -1,10 +1,12 @@
 package im.etap.forecast.domain
 
+import im.etap.forecast.core.dto.ForecastInfoResponse
 import im.etap.forecast.core.dto.ForecastSyncRequest
 import im.etap.forecast.core.dto.ForecastSyncResponse
 import im.etap.forecast.core.map.MapGrid
 import im.etap.forecast.core.map.MapUtil
 import im.etap.forecast.core.time.TimeUtil
+import im.etap.forecast.domain.entity.ForecastInfo
 import im.etap.forecast.domain.entity.ForecastSync
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
@@ -33,5 +35,16 @@ internal fun ForecastSync.toForecastSyncResponse(): ForecastSyncResponse {
         location.x,
         location.y,
         isFinished
+    )
+}
+
+internal fun ForecastInfo.toForecastInfoResponse(): ForecastInfoResponse {
+    return ForecastInfoResponse(
+        category,
+        forecastDate,
+        forecastTime,
+        forecastValue,
+        forecastSync.baseDateTime.toLocalDate(),
+        forecastSync.baseDateTime.toLocalTime()
     )
 }

@@ -1,9 +1,9 @@
-package im.etap.forecast.application.api
+package im.etap.forecast
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication(scanBasePackages = ["im.etap.forecast"])
+@SpringBootApplication
 class ApiApplication
 
 fun main(args: Array<String>) {

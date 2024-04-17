@@ -1,15 +1,14 @@
-package im.etap.forecast.application.api.service
+package im.etap.forecast.client
 
-import im.etap.forecast.application.api.controller.ForecastSyncRequest
+import im.etap.forecast.core.dto.ForecastSyncRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.service.annotation.PostExchange
 
 /**
- * 기상예보 동기화 API
+ * 기상예보 동기화 클라이언트
  */
-interface ForecastSyncApi {
-
+interface ForecastSyncClient {
     /**
      * 단기예보 요청
      *

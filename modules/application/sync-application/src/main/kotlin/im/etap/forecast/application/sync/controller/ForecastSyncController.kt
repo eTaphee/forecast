@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("/sync")
-class SyncForecastController(private val syncService: VillageForecastSyncService) {
+class ForecastSyncController(private val syncService: VillageForecastSyncService) {
 
     /**
      * 단기예보 동기화

@@ -1,7 +1,7 @@
 package im.etap.forecast.application.api.controller
 
-import im.etap.forecast.application.api.dto.ForecastInfoResponse
-import im.etap.forecast.application.api.service.ForecastQueryService
+import im.etap.forecast.core.dto.ForecastInfoResponse
+import im.etap.forecast.domain.service.ForecastQueryService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController
 
 /**
  * 기상예보 조회 컨트롤러
- *
- * @param forecastQueryService 기상예보 조회 서비스
  */
 @RestController
 @RequestMapping("/forecast")

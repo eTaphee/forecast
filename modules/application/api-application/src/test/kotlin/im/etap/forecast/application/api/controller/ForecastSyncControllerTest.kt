@@ -2,7 +2,6 @@ package im.etap.forecast.application.api.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
-import im.etap.forecast.application.api.service.ForecastSyncApi
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

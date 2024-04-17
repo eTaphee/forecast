@@ -1,13 +1,15 @@
-package im.etap.forecast.application.api.config
+package im.etap.forecast.client.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import im.etap.forecast.application.api.service.ForecastSyncApi
+import im.etap.forecast.client.ForecastSyncClient
+import im.etap.forecast.exception.ErrorCode.FORECAST_SYNC_API_ERROR
 import im.etap.forecast.exception.ErrorResponse
 import im.etap.forecast.exception.ForecastException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpRequest
 import org.springframework.http.client.ClientHttpRequestExecution
@@ -24,8 +26,9 @@ import org.springframework.web.util.DefaultUriBuilderFactory
 /**
  * 기상예보 동기화 API 설정
  */
+@ComponentScan("org.springframework.boot.autoconfigure.jackson")
 @Configuration
-class ForecastSyncApiConfig(
+class ForecastSyncClientConfig(
     @Value("\${forecast-sync-api.url}")
     private val url: String
 ) {
@@ -33,18 +36,18 @@ class ForecastSyncApiConfig(
     private lateinit var objectMapper: ObjectMapper
 
     @Bean
-    fun forecastSyncApi(): ForecastSyncApi {
+    fun forecastSyncClient(): ForecastSyncClient {
         // TODO: restTemplate timeout, retry, backoff
         return HttpServiceProxyFactory.builderFor(
             RestTemplateAdapter.create(RestTemplate().apply {
-                interceptors.add(ForecastSyncApiInterceptor())
+                interceptors.add(ForecastSyncClientInterceptor())
                 messageConverters.add(MappingJackson2HttpMessageConverter())
                 uriTemplateHandler = DefaultUriBuilderFactory(url)
                 errorHandler = ForecastSyncApiErrorHandler(objectMapper)
             })
         )
             .build()
-            .createClient<ForecastSyncApi>()
+            .createClient<ForecastSyncClient>()
     }
 }
 
@@ -53,7 +56,7 @@ class ForecastSyncApiConfig(
  *
  * API 서버의 문제가 아닌, 통신 중의 예외를 처리
  */
-class ForecastSyncApiInterceptor :
+class ForecastSyncClientInterceptor :
     ClientHttpRequestInterceptor {
     override fun intercept(
         request: HttpRequest,

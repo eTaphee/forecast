@@ -4,5 +4,5 @@ server:
 spring:
   profiles:
     include:
-      - external-api
       - domain
+      - external-api
