@@ -5,3 +5,6 @@ spring:
   profiles:
     include:
       - domain
+
+forecast-sync-api:
+  url: http://localhost:8090

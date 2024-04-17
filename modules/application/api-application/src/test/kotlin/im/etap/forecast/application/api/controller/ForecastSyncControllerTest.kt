@@ -1,27 +1,25 @@
-package im.etap.forecast.application.sync.controller
+package im.etap.forecast.application.api.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
-import im.etap.forecast.application.sync.dto.ForecastSyncRequest
-import im.etap.forecast.application.sync.dto.ForecastSyncResponse
-import im.etap.forecast.application.sync.service.ForecastSyncService
+import im.etap.forecast.application.api.service.ForecastSyncApi
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType.APPLICATION_JSON
+import org.springframework.http.ResponseEntity
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.post
 
 @WebMvcTest(ForecastSyncController::class)
-internal class ForecastSyncControllerTest {
-
+class ForecastSyncControllerTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
     @MockkBean
-    private lateinit var forecastSyncService: ForecastSyncService
+    private lateinit var forecastSyncApi: ForecastSyncApi
 
     @Autowired
     private lateinit var mapper: ObjectMapper
@@ -31,11 +29,11 @@ internal class ForecastSyncControllerTest {
 
     @Test
     @DisplayName("동기화 요청이 끝나지 않은 경우 202 반환")
-    fun syncVillageForecast_return_202_when_isFinished_false() {
+    fun syncVillageForecast_return_204_when_api_return_204() {
         // given
         every {
-            forecastSyncService.saveVillageForecastSyncRequest(any<ForecastSyncRequest>())
-        } returns ForecastSyncResponse(1L, false)
+            forecastSyncApi.requestVillageForecast(any<ForecastSyncRequest>())
+        } returns ResponseEntity.accepted().build()
 
         // when & then
         mockMvc.post("/sync/village") {
@@ -48,12 +46,12 @@ internal class ForecastSyncControllerTest {
     }
 
     @Test
-    @DisplayName("동기화 요청이 끝났으면 경우 200 반환")
-    fun syncVillageForecast_return_200_when_isFinished_true() {
+    @DisplayName("동기화 요청이 끝난 경우 200 반환")
+    fun syncVillageForecast_return_200_when_api_return_200() {
         // given
         every {
-            forecastSyncService.saveVillageForecastSyncRequest(any<ForecastSyncRequest>())
-        } returns ForecastSyncResponse(1L, true)
+            forecastSyncApi.requestVillageForecast(any<ForecastSyncRequest>())
+        } returns ResponseEntity.ok().build()
 
         // when & then
         mockMvc.post("/sync/village") {

@@ -28,7 +28,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory
 @Configuration
 class ForecastSyncApiConfig(
     @Value("\${forecast-sync-api.url}")
-    private val url: String = "http://localhost:8090",
+    private val url: String
 ) {
     @Autowired
     private lateinit var objectMapper: ObjectMapper

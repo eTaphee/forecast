@@ -11,4 +11,5 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.hibernate:hibernate-spatial:6.4.4.Final")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    testImplementation("com.ninja-squad:springmockk:4.0.2")
 }
