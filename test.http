@@ -1,0 +1,14 @@
+# 문충로 74, 37.7286396, 127.1028903
+
+### 단기예보 동기화 요청 -> 현재 시간을 기준으로 마지막 갱신 시간에 대한 데이터 동기화 요청
+POST http://localhost:8080/sync/village
+Content-Type: application/json
+
+{
+    "lat": 37.7286396,
+    "lng": 127.1028903
+}
+
+
+### 단기에보 조회 -> 지역의 마지막 갱신 정보에 대한 단기예보 조회
+GET http://localhost:8080/forecast/village?lat=37.7286396&lng=127.1028903
