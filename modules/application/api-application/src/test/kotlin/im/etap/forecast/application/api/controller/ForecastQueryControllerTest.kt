@@ -1,8 +1,8 @@
 package im.etap.forecast.application.api.controller
 
 import com.ninjasquad.springmockk.MockkBean
-import im.etap.forecast.application.api.dto.ForecastInfoResponse
-import im.etap.forecast.application.api.service.ForecastQueryService
+import im.etap.forecast.core.dto.ForecastInfoResponse
+import im.etap.forecast.domain.service.ForecastQueryService
 import io.mockk.every
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
