@@ -1,4 +1,4 @@
-package im.etap.forecast.application.sync.event
+package im.etap.forecast.domain.event
 
 import im.etap.forecast.domain.entity.ForecastSync
 import org.locationtech.jts.geom.Point
@@ -11,7 +11,7 @@ import java.time.LocalDateTime
  * @param baseDateTime 기준 시각
  * @param location 위치
  */
-data class ForecastSyncEvent(
+internal data class ForecastSyncEvent(
     val id: Long,
     val baseDateTime: LocalDateTime,
     val location: Point

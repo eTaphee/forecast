@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-abstract class AuditableEntity {
+internal abstract class AuditableEntity {
     /**
      * 생성일시
      */

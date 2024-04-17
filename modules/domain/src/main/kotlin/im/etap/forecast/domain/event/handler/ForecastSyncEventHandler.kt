@@ -1,10 +1,10 @@
-package im.etap.forecast.application.sync.event.handler
+package im.etap.forecast.domain.event.handler
 
-import im.etap.forecast.application.core.exception.ErrorCode.FORECAST_SYNC_NOT_FOUND
-import im.etap.forecast.application.core.exception.ForecastException
-import im.etap.forecast.application.sync.event.ForecastSyncEvent
 import im.etap.forecast.domain.entity.ForecastSync
+import im.etap.forecast.domain.event.ForecastSyncEvent
 import im.etap.forecast.domain.repository.ForecastSyncRepository
+import im.etap.forecast.exception.ErrorCode.FORECAST_SYNC_NOT_FOUND
+import im.etap.forecast.exception.ForecastException
 import im.etap.forecast.external.api.dto.ForecastInfo
 import im.etap.forecast.external.api.service.ForecastApi
 import mu.KotlinLogging
@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
  * 기상예보 동기화 이벤트 핸들러
  */
 @Service
-class ForecastSyncEventHandler(
+internal class ForecastSyncEventHandler(
     @Value("\${api-data-go-kr.serviceKey}")
     private val serviceKey: String,
     private val forecastApi: ForecastApi,

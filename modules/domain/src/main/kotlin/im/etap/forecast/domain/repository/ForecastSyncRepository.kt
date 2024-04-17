@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 @Repository
-interface ForecastSyncRepository : JpaRepository<ForecastSync, Long> {
+internal interface ForecastSyncRepository : JpaRepository<ForecastSync, Long> {
 
     @Query("SELECT f FROM ForecastSync f WHERE f.baseDateTime = :baseDateTime AND f.location = :location AND f.isFailed = false")
     fun findByBaseDateTimeAndLocation(

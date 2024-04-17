@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 
 // TODO: spatial index + datetime index
 @Entity
-class ForecastSync(
+internal class ForecastSync(
     val baseDateTime: LocalDateTime,
     val location: Point
 ) : AuditableEntity() {

@@ -7,7 +7,7 @@ import java.time.LocalTime
 
 
 @Entity
-class ForecastInfo(
+internal class ForecastInfo(
     val category: String,
     val forecastDate: LocalDate,
     val forecastTime: LocalTime,

@@ -1,7 +1,7 @@
 package im.etap.forecast.application.sync.controller
 
-import im.etap.forecast.application.sync.dto.ForecastSyncRequest
-import im.etap.forecast.application.sync.service.ForecastSyncService
+import im.etap.forecast.application.sync.service.VillageForecastSyncService
+import im.etap.forecast.core.dto.ForecastSyncRequest
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("/sync")
-class ForecastSyncController(private val forecastSyncService: ForecastSyncService) {
+class SyncForecastController(private val syncService: VillageForecastSyncService) {
 
     /**
      * 단기예보 동기화
@@ -23,7 +23,7 @@ class ForecastSyncController(private val forecastSyncService: ForecastSyncServic
      */
     @PostMapping("village")
     fun syncVillageForecast(@Valid @RequestBody request: ForecastSyncRequest): ResponseEntity<Void> {
-        return if (forecastSyncService.saveVillageForecastSyncRequest(request).isFinished) {
+        return if (syncService.saveVillageForecastSyncRequest(request).isFinished) {
             ResponseEntity.ok().build()
         } else {
             ResponseEntity.accepted().build()
