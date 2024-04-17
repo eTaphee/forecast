@@ -5,7 +5,7 @@ version = "0.0.1-SNAPSHOT"
 dependencies {
     implementation(project(":modules:core"))
     implementation(project(":modules:domain"))
-    implementation(project(":modules:application:core-application"))
+    implementation(project(":modules:exception-handler"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")

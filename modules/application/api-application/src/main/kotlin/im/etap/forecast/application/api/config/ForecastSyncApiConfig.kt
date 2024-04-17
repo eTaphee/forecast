@@ -3,9 +3,8 @@ package im.etap.forecast.application.api.config
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import im.etap.forecast.application.api.service.ForecastSyncApi
-import im.etap.forecast.application.core.exception.ErrorCode.FORECAST_SYNC_API_ERROR
-import im.etap.forecast.application.core.exception.ErrorResponse
-import im.etap.forecast.application.core.exception.ForecastException
+import im.etap.forecast.exception.ErrorResponse
+import im.etap.forecast.exception.ForecastException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean

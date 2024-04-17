@@ -14,8 +14,10 @@ dependencies {
     implementation(project(":modules:core"))
     implementation(project(":modules:domain"))
     implementation(project(":modules:external-api"))
-    implementation(project(":modules:application:core-application"))
+    implementation(project(":modules:exception-handler"))
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+
     testImplementation("com.ninja-squad:springmockk:4.0.2")
 }

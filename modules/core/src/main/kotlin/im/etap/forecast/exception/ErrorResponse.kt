@@ -2,6 +2,7 @@ package im.etap.forecast.exception
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL
+import im.etap.forecast.exception.ErrorCode.INTERNAL_ERROR
 
 data class ErrorResponse(
     val code: ErrorCode,
@@ -23,4 +24,8 @@ data class ErrorResponse(
     fun toException(): ForecastException {
         return ForecastException(code, message, errors)
     }
+}
+
+fun Exception.toResponse(): ErrorResponse {
+    return ErrorResponse(INTERNAL_ERROR, message)
 }
